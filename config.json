@@ -1,0 +1,20 @@
+{
+    "input_methods_file": "data/raw/500_methods.csv",
+    "original_comments_file": "data/raw/500_methods_and_summaries.csv",
+    "roslyn_comments_file": "data/raw/500_comment_generated_nonllm.csv",
+    "llm_model": "codellama",
+    "evaluation": {
+        "semantic": {
+            "model": "microsoft/codebert-base",
+            "batch_size": 32
+        },
+        "rouge": {
+            "metrics": ["rouge-1", "rouge-2"],
+            "use_stemming": true
+        },
+        "readability": {
+            "metrics": ["flesch_kincaid", "smog"]
+        }
+    },
+    "output_dir": "data/processed"
+}
