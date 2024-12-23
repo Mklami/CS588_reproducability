@@ -34,6 +34,22 @@ pip install -r requirements.txt
 ollama pull codellama
 ```
 
+5. Required Manual Setup:
+```bash
+# Create logs directory
+mkdir -p logs
+
+# Create __init__.py files in each directory
+touch src/__init__.py
+touch src/generators/__init__.py
+touch src/evaluators/__init__.py
+touch src/evaluators/precision/__init__.py
+touch src/evaluators/readability/__init__.py
+touch src/evaluators/recall/__init__.py
+touch src/evaluators/semantic/__init__.py
+touch src/matchers/__init__.py
+```
+
 ## Repository Structure
 
 ```
@@ -48,15 +64,19 @@ reproducible-code-comments/
 │   ├── matchers/
 │   │   └── comment_matcher.py # Comment alignment
 │   └── evaluators/            # Evaluation metrics
-│       ├── semantic_evaluator.py
-│       ├── rouge_evaluator.py
-│       ├── jaccard_evaluator.py
-│       └── readability_evaluator.py
+│       ├── precision/
+│       │   └── jaccard_evaluator.py
+│       ├── readability/
+│       │   └── readability_evaluator.py
+│       ├── recall/
+│       │   └── rouge_evaluator.py
+│       └── semantic/
+│           └── semantic_evaluator.py
 ├── data/
 │   ├── raw/                   # Input data
-│   ├── interim/               # Intermediate results
-│   └── processed/             # Final results
-└── logs/                      # Pipeline logs
+│   ├── interim/              # Intermediate results
+│   └── processed/           # Final results
+└── logs/                    # Pipeline logs
 ```
 
 ## Data Preparation
@@ -69,9 +89,14 @@ Place your input files in the `data/raw/` directory:
 ## Configuration
 
 The `config.json` file contains all configurable parameters:
-- Input/output file paths
-- LLM model settings
-- Evaluation metrics configuration
+```json
+{
+    "input_methods_file": "data/raw/500_methods.csv",
+    "original_comments_file": "data/raw/500_methods_and_summaries.csv",
+    "roslyn_comments_file": "data/raw/500_comment_generated_nonllm.csv",
+    "llm_model": "codellama"
+}
+```
 
 ## Running the Pipeline
 
@@ -96,40 +121,6 @@ The pipeline generates several output files in `data/processed/`:
 - `readability_results.csv` - Readability metrics
 - `evaluation_stats.json` - Aggregated statistics
 
-## Evaluation Metrics
-
-1. **Semantic Similarity**
-   - Uses CodeBERT embeddings
-   - Cosine similarity comparison
-
-2. **ROUGE Scores**
-   - ROUGE-1 and ROUGE-2 metrics
-   - Evaluates content overlap
-
-3. **Jaccard Similarity**
-   - Measures lexical overlap
-   - Token-based comparison
-
-4. **Readability**
-   - Flesch-Kincaid Grade Level
-   - SMOG Index
-
 ## Logging
 
-The pipeline logs all operations to:
-- Console output
-- Log files in the `logs/` directory
-
-## Requirements
-
-Key dependencies (see requirements.txt for complete list):
-- transformers
-- torch
-- nltk
-- pandas
-- numpy
-- requests
-- tqdm
-- matplotlib
-- seaborn
-
+Pipeline logs are saved in the `logs` directory with timestamp-based filenames.
