@@ -54,7 +54,7 @@ matplotlib
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/legacy-code-comments.git
+git clone https://github.com/Mklami/CS588_reproducability.git
 ```
 2. Install dependencies:
    pip install -r requirements.txt
