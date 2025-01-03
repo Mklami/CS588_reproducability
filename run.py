@@ -13,10 +13,10 @@ sys.path.append(project_root)
 
 from src.generators.llm_generator import CommentGenerator as LLMGenerator
 from src.matchers.comment_matcher import compare_and_merge_all_comments
-from src.evaluators.semantic_evaluator import evaluate_comments as evaluate_semantic
-from src.evaluators.rouge_evaluator import evaluate_rouge
-from src.evaluators.jaccard_evaluator import evaluate_precision
-from src.evaluators.readability_evaluator import evaluate_readability
+from src.evaluators.semantic.semantic_evaluator import evaluate_comments as evaluate_semantic
+from src.evaluators.recall.rouge_evaluator import evaluate_rouge
+from src.evaluators.precision.jaccard_evaluator import evaluate_precision
+from src.evaluators.readability.readability_evaluator import evaluate_readability
 
 class Pipeline:
     def __init__(self, config_path: str = "config.json"):
