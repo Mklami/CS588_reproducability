@@ -28,9 +28,8 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Install Ollama and the Code Llama model:
+4. Install Ollama from (https://ollama.ai/)[https://ollama.ai/] and the Code Llama model:
 ```bash
-# Install Ollama from https://ollama.ai/
 ollama pull codellama
 ```
 
