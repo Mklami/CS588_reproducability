@@ -12,6 +12,7 @@ project_root = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(project_root)
 
 from src.generators.llm_generator import CommentGenerator as LLMGenerator
+from src.generators.llm_generator import process_methods_file
 from src.matchers.comment_matcher import compare_and_merge_all_comments
 from src.evaluators.semantic.semantic_evaluator import evaluate_comments as evaluate_semantic
 from src.evaluators.recall.rouge_evaluator import evaluate_rouge
@@ -75,7 +76,7 @@ class Pipeline:
         output_file = os.path.join(self.root_dir, 'data', 'interim', 'llm_comments.csv')
         
         llm_generator = LLMGenerator(self.config['llm_model'])
-        llm_generator.process_methods_file(input_file, output_file)
+        process_methods_file(input_file, output_file)
         return output_file
 
     def match_comments(self, llm_file: str):
