@@ -13,7 +13,7 @@ This repository contains the implementation and evaluation pipeline for the pape
 
 1. Clone the repository:
 ```bash
-git clone [https://github.com/Mklami/CS588_reproducability.git](https://github.com/Mklami/CS588_reproducability.git)
+git clone https://github.com/Mklami/CS588_reproducability.git
 cd CS588_reproducability
 ```
 
